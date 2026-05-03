@@ -3,12 +3,12 @@ import { useState, useEffect } from 'react';
 import { supabase } from '../backend/config/supabaseClient';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import VerifyOtp from './components/VerifyOtp'; // You will create this next
+import VerifyOtp from './components/VerifyOtp';
 
 function App() {
   const [session, setSession] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [signupEmail, setSignupEmail] = useState(""); // Track dynamic email
+  const [signupEmail, setSignupEmail] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {

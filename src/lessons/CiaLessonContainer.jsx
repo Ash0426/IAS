@@ -24,7 +24,6 @@ export default function CiaLessonContainer({ isCompleted, onComplete, savedAnswe
   return (
     <div style={{ marginTop: '10px' }}>
       
-      {/* Centered Top Navigation - Ref: image_be67c9.png inspiration */}
       <div style={{ 
         display: 'flex', 
         flexDirection: 'column',
@@ -35,8 +34,6 @@ export default function CiaLessonContainer({ isCompleted, onComplete, savedAnswe
         marginBottom: '30px'
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-          
-          {/* Back Button */}
           <button
             onClick={() => setCurrentStep(prev => Math.max(1, prev - 1))}
             disabled={currentStep === 1}
@@ -54,7 +51,6 @@ export default function CiaLessonContainer({ isCompleted, onComplete, savedAnswe
             </div>
           </button>
 
-          {/* Step Numbers */}
           {steps.map((num) => (
             <button
               key={num}
@@ -76,7 +72,6 @@ export default function CiaLessonContainer({ isCompleted, onComplete, savedAnswe
             </button>
           ))}
 
-          {/* Next Button */}
           <button
             onClick={() => setCurrentStep(prev => Math.min(5, prev + 1))}
             disabled={currentStep === 5}

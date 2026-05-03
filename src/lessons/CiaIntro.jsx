@@ -4,8 +4,6 @@ import { Shield } from 'lucide-react';
 export default function CiaIntro() {
   return (
     <div className="lesson-step" style={{ animation: 'fadeIn 0.4s ease-out', color: '#000', textAlign: 'left' }}>
-      
-      {/* Header Section - Left Aligned */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
         <Shield size={26} strokeWidth={2.5} />
         <h2 style={{ 
@@ -19,10 +17,8 @@ export default function CiaIntro() {
         </h2>
       </div>
 
-      {/* Horizontal Divider */}
       <div style={{ width: '100%', height: '2px', background: '#000', marginBottom: '25px' }} />
 
-      {/* Content Body */}
       <div style={{ maxWidth: '800px' }}>
         <p style={{ 
           fontSize: '18px', 
@@ -38,7 +34,6 @@ export default function CiaIntro() {
           These three elements are considered the most crucial components and should be guaranteed in any secure system. They serve as the primary pillars for evaluating and implementing security regardless of the underlying system.
         </p>
 
-        {/* Emphasis Section */}
         <div style={{ marginBottom: '30px' }}>
           <div style={{ 
             fontWeight: '900', 
@@ -56,7 +51,6 @@ export default function CiaIntro() {
           </div>
         </div>
 
-        {/* Footer Note */}
         <p style={{ 
           fontSize: '14px', 
           lineHeight: '1.6', 

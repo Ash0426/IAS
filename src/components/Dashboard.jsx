@@ -3,7 +3,6 @@ import { LogOut, ExternalLink, ShieldAlert, Info, User, AlertTriangle, Mail } fr
 import { supabase } from "../../backend/config/supabaseClient";
 import CiaLessonContainer from "../lessons/CiaLessonContainer";
 
-// Theme Constants
 const BLACK = "#000000";
 const WHITE = "#FFFFFF";
 const GRAY_BORDER = "#e5e5e5";
@@ -25,7 +24,7 @@ export default function Dashboard({ onLogout }) {
     if (session) {
       setUserEmail(session.user.email);
       
-      // Fetch score from Supabase to persist "Completed" status
+      // check quiz score from database
       const { data } = await supabase
         .from('quiz_scores')
         .select('score')
@@ -42,7 +41,7 @@ export default function Dashboard({ onLogout }) {
 }, []);
 
   const handleCiaComplete = (answers, score) => {
-  // This is triggered by the onComplete prop in CiaQuiz
+  // mark CIA as completed
   setCiaCompleted(true);
   setCiaAnswers(answers); 
 };
@@ -63,7 +62,6 @@ export default function Dashboard({ onLogout }) {
         .btn-solid { display: flex; align-items: center; gap: 8px; padding: 8px 16px; background: ${BLACK}; color: ${WHITE}; border: 1px solid ${BLACK}; border-radius: 6px; cursor: pointer; font-weight: 600; transition: all 0.2s; }
         .btn-solid:hover { background: ${GRAY_HOVER}; }
         
-        /* Tooltip Modal Styling */
         .profile-tooltip {
           position: absolute;
           top: 45px;
@@ -92,7 +90,6 @@ export default function Dashboard({ onLogout }) {
         </div>
 
         <div className="dash-actions">
-          {/* Profile Hover Button */}
           <div 
             onMouseEnter={() => setIsProfileHovered(true)}
             onMouseLeave={() => setIsProfileHovered(false)}
@@ -102,7 +99,6 @@ export default function Dashboard({ onLogout }) {
               <User size={16} /> Profile
             </button>
 
-            {/* Hover Modal */}
             {isProfileHovered && (
               <div className="profile-tooltip">
                 <p style={{ fontSize: "10px", fontWeight: "900", color: "#666", marginBottom: "4px", textTransform: "uppercase", textAlign: "left" }}>
@@ -124,7 +120,6 @@ export default function Dashboard({ onLogout }) {
         </div>
       </div>
 
-      {/* Main Content Area */}
       <div style={{ background: WHITE, border: `2px solid ${BLACK}`, padding: "30px" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px", marginBottom: "20px", borderBottom: `1px solid ${GRAY_BORDER}`, paddingBottom: "15px" }}>
           <div>
@@ -143,7 +138,6 @@ export default function Dashboard({ onLogout }) {
           isCompleted={ciaCompleted} 
           onComplete={handleCiaComplete} 
           savedAnswers={ciaAnswers}
-          // Add a way to reset completion status if they retake
           onRetake={() => setCiaCompleted(false)} 
         />
 
@@ -170,7 +164,6 @@ export default function Dashboard({ onLogout }) {
         </div>
       </div>
 
-      {/* Logout Confirmation Modal */}
       {showLogoutModal && (
         <div style={{ position: "fixed", top: 0, left: 0, width: "100%", height: "100%", background: "rgba(0,0,0,0.8)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 150 }}>
           <div style={{ background: WHITE, padding: "30px", border: `3px solid ${BLACK}`, width: "100%", maxWidth: "400px" }}>

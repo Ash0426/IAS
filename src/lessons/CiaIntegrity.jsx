@@ -4,8 +4,6 @@ import { CheckCircle } from 'lucide-react';
 export default function CiaIntegrity() {
   return (
     <div className="lesson-step" style={{ animation: 'fadeIn 0.4s ease-out', color: '#000', textAlign: 'left' }}>
-      
-      {/* Header Section */}
       <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '10px' }}>
         <CheckCircle size={26} strokeWidth={2.5} />
         <h2 style={{ 
@@ -19,10 +17,8 @@ export default function CiaIntegrity() {
         </h2>
       </div>
 
-      {/* Horizontal Divider */}
       <div style={{ width: '100%', height: '2px', background: '#000', marginBottom: '25px' }} />
 
-      {/* Definition Body */}
       <div style={{ maxWidth: '800px' }}>
         <p style={{ 
           fontSize: '18px', 
@@ -37,10 +33,7 @@ export default function CiaIntegrity() {
           This principle ensures that information remains accurate and unaltered unless authorized. It protects against accidental modifications and intentional tampering, providing assurance that data is reliable and trustworthy throughout all operations.
         </p>
 
-        {/* Two-Column Content without Boxes */}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '40px', marginBottom: '30px' }}>
-          
-          {/* Threats Section */}
           <div>
             <div style={{ fontWeight: '900', fontSize: '13px', textTransform: 'uppercase', marginBottom: '12px', letterSpacing: '1px' }}>
               Threats & Compromises
@@ -54,7 +47,6 @@ export default function CiaIntegrity() {
             </div>
           </div>
 
-          {/* Methods Section */}
           <div>
             <div style={{ fontWeight: '900', fontSize: '13px', textTransform: 'uppercase', marginBottom: '12px', letterSpacing: '1px' }}>
               Methods for Ensuring Integrity
@@ -70,7 +62,6 @@ export default function CiaIntegrity() {
 
         </div>
 
-        {/* Footer Note */}
         <p style={{ 
           fontSize: '14px', 
           lineHeight: '1.6', 

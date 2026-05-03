@@ -8,12 +8,12 @@ export default function VerifyOtp({ email }) {
   const navigate = useNavigate();
 
   const handleVerify = async (e) => {
-  e.preventDefault(); // Prevents the page from refreshing and causing "undefined" states
+  e.preventDefault();
   setError(null);
 
   const { data, error } = await supabase.auth.verifyOtp({
-    email: email, // Use the 'email' prop passed to the component
-    token: otp,   // Use the 'otp' state from your input field
+    email: email,
+    token: otp,
     type: 'signup'
   });
 

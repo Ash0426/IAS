@@ -6,7 +6,7 @@ const Register = ({ onBackToLogin }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [otp, setOtp] = useState(''); // Initialized to "" to prevent Controlled Input error
+  const [otp, setOtp] = useState('');
   const [step, setStep] = useState(1); 
   const [showPass, setShowPass] = useState(false);
   const [showConfirm, setShowConfirm] = useState(false);
@@ -18,7 +18,7 @@ const Register = ({ onBackToLogin }) => {
     return /^(?=.*[!@#$%^&*(),.?":{}|<>]).{8,}$/.test(pass);
   };
 
-  // Phase 1: Use signUp to trigger the "Confirm Signup" Template
+  // send OTP to email
   const handleRequestOtp = async (e) => {
     e.preventDefault();
     setMessage('');
@@ -38,7 +38,6 @@ const Register = ({ onBackToLogin }) => {
 
     setLoading(true);
     
-    // CHANGED: Use signUp instead of signInWithOtp to avoid Magic Links
     const { data, error } = await supabase.auth.signUp({
       email,
       password,
@@ -54,7 +53,7 @@ const Register = ({ onBackToLogin }) => {
     }
   };
 
-  // Phase 2: Verify OTP using type: 'signup'
+  // verify OTP
   const handleVerifyOtp = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -63,7 +62,7 @@ const Register = ({ onBackToLogin }) => {
     const { data, error } = await supabase.auth.verifyOtp({
       email,
       token: otp,
-      type: 'signup' // CHANGED: Must be 'signup' to match the signUp method
+      type: 'signup'
     });
 
     if (error) {
@@ -74,7 +73,6 @@ const Register = ({ onBackToLogin }) => {
       setIsError(false);
       setMessage("Identity Verified. Registration Complete!");
       setLoading(false);
-      // Logic for redirect or auto-login
     }
   };
 
