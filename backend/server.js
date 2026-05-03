@@ -4,9 +4,8 @@ import cors from 'cors';
 const app = express();
 const PORT = 5000;
 
-app.use(cors()); // Allows your React app to talk to this server
+app.use(cors()); 
 
-// This is the route your Dashboard.jsx is looking for
 app.get('/api/webgoat-link', (req, res) => {
   res.json({ 
     // Replace this with your actual local WebGoat address

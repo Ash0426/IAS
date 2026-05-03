@@ -1,35 +1,52 @@
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { supabase } from '../backend/config/supabaseClient';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
-import ProfilePage from './components/ProfilePage'; // 1. Import it here
+import VerifyOtp from './components/VerifyOtp'; // You will create this next
 
 function App() {
   const [session, setSession] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [signupEmail, setSignupEmail] = useState(""); // Track dynamic email
+  const navigate = useNavigate();
 
   useEffect(() => {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
+      setLoading(false);
     });
 
     const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
+      if (!session) navigate('/');
     });
 
     return () => subscription.unsubscribe();
-  }, []);
+  }, [navigate]);
+
+  if (loading) {
+    return (
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', fontFamily: 'sans-serif', fontWeight: '900' }}>
+        INITIALIZING SYSTEM...
+      </div>
+    );
+  }
 
   return (
     <Routes>
-      <Route path="/" element={!session ? <Login /> : <Navigate to="/dashboard" />} />
-      <Route path="/dashboard" element={session ? <Dashboard /> : <Navigate to="/" />} />
-      
-      {/* 2. Add the Profile Route here */}
       <Route 
-        path="/profile" 
-        element={session ? <ProfilePage /> : <Navigate to="/" />} 
+        path="/" 
+        element={!session ? <Login onSignupStarted={(email) => setSignupEmail(email)} /> : <Navigate to="/dashboard" />} 
       />
+      <Route 
+        path="/verify-otp" 
+        element={<VerifyOtp email={signupEmail} />} 
+      />
+    <Route 
+      path="/dashboard" 
+      element={session ? <Dashboard onLogout={() => setSession(null)} /> : <Navigate to="/" />} 
+    />
     </Routes>
   );
 }
