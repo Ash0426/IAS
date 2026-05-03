@@ -63,7 +63,7 @@ export default function CiaLessonContainer({ isCompleted, onComplete, savedAnswe
                 width: '42px',
                 height: '38px',
                 borderRadius: '6px',
-                border: currentStep === num ? '3px solid #000' : '1px solid #555',
+                border: currentStep === num ? '3px solid #000' : '3px solid #555',
                 backgroundColor: currentStep === num ? '#000' : '#444',
                 color: '#fff',
                 fontSize: '15px',
